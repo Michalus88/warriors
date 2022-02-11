@@ -5,5 +5,5 @@ export interface WarriorData {
   defense: number;
   resilience: number;
   agility: number;
-  winings: number;
+  winnings?: number;
 }
