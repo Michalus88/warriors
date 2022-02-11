@@ -1,3 +1,4 @@
+import { db, ObjectId } from "../config/mongoDb";
 import { WarriorData } from "../interfaces.ts/warrior";
 
 export class Warrior {
@@ -11,9 +12,19 @@ export class Warrior {
   constructor(warriorObj: WarriorData) {
     this.id = warriorObj._id;
     this.name = warriorObj.name;
-    this.strength = warriorObj.strengrt;
+    this.strength = warriorObj.strength;
     this.defense = warriorObj.defense;
     this.resilience = warriorObj.resilience;
     this.agility = warriorObj.agility;
+  }
+
+  async insert() {
+    return await db.collection("warriors").insertOne({
+      name: "Niszczyciel",
+      strength: 5,
+      defense: 2,
+      resilience: 1,
+      agility: 2,
+    } as Warrior);
   }
 }
