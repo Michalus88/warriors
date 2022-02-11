@@ -1,5 +1,5 @@
 export interface WarriorData {
-  id: string;
+  _id?: string;
   name: string;
   strengrt: number;
   defense: number;
