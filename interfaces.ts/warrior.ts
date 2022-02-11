@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 export interface WarriorData {
-  _id?: string;
+  _id?: ObjectId;
   name: string;
   strength: number;
   defense: number;

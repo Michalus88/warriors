@@ -2,7 +2,7 @@ import { db, ObjectId } from "../config/mongoDb";
 import { WarriorData } from "../interfaces.ts/warrior";
 
 export class Warrior {
-  id?: string;
+  id?: ObjectId;
   name: string;
   strength: number;
   defense: number;
@@ -28,6 +28,6 @@ export class Warrior {
       resilience: this.resilience,
       agility: this.agility,
       winnings: 0,
-    });
+    } as WarriorData);
   }
 }
