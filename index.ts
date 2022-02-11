@@ -2,6 +2,8 @@ import "dotenv/config";
 import * as express from "express";
 import { engine } from "express-handlebars";
 
+import warriorRouter from "./routers/warriors-routers";
+
 const app = express();
 
 app.use(
@@ -19,6 +21,8 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
+
+app.use("/warrior", warriorRouter());
 
 // app.use(errorHandler);
 
