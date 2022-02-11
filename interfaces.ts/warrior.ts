@@ -1,4 +1,4 @@
-interface WarriorData {
+export interface WarriorData {
   id: string;
   name: string;
   strengrt: number;
