@@ -13,11 +13,19 @@ export class Warrior {
   constructor(warriorObj: WarriorData) {
     this.id = warriorObj._id;
     this.name = warriorObj.name;
-    this.strength = warriorObj.strength;
-    this.defense = warriorObj.defense;
-    this.resilience = warriorObj.resilience;
-    this.agility = warriorObj.agility;
-    this.winnings = warriorObj.winnings;
+    this.strength = Number(warriorObj.strength);
+    this.defense = Number(warriorObj.defense);
+    this.resilience = Number(warriorObj.resilience);
+    this.agility = Number(warriorObj.agility);
+    this.winnings = Number(warriorObj.winnings);
+  }
+
+  static async findOneByName(name: string): Promise<WarriorData> {
+    const warrior = (await db
+      .collection("warriors")
+      .findOne({ name })) as WarriorData;
+
+    return warrior;
   }
 
   async insert() {
