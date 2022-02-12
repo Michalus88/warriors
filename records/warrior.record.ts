@@ -30,4 +30,27 @@ export class Warrior {
       winnings: 0,
     } as WarriorData);
   }
+
+  pointsVerification() {
+    const totalPointsToDistribute = 10;
+    const minPointsToGiven = 1;
+    const pointsDistributed =
+      this.strength + this.agility + this.defense + this.resilience;
+
+    if (totalPointsToDistribute > pointsDistributed) {
+      throw new Error("All points must be distributed !");
+    } else if (totalPointsToDistribute < pointsDistributed) {
+      throw new Error("You cannot distribute more than ten points !");
+    }
+
+    const doesEachSkillHavePoints =
+      this.strength >= minPointsToGiven &&
+      this.agility >= minPointsToGiven &&
+      this.defense >= minPointsToGiven &&
+      this.resilience >= minPointsToGiven;
+
+    if (!doesEachSkillHavePoints) {
+      throw new Error("Each skill must get at least one point !");
+    }
+  }
 }
