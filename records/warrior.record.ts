@@ -29,6 +29,14 @@ export class Warrior {
   }
 
   async insert() {
+    const isTheNameTaken = await Warrior.findOneByName(this.name);
+
+    if (isTheNameTaken) {
+      throw new Error("Sorry. A fighter with the given name already exists...");
+    }
+
+    this.pointsVerification();
+
     return await db.collection("warriors").insertOne({
       name: this.name,
       strength: this.strength,
