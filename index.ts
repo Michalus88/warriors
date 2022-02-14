@@ -24,7 +24,7 @@ app.engine(
 app.set("view engine", "hbs");
 
 app.use("/", homeRouter());
-app.use("/warrior", registerRouter());
+app.use("/register", registerRouter());
 
 // app.use(errorHandler);
 
