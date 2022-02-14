@@ -28,6 +28,10 @@ export class Warrior {
     return warrior;
   }
 
+  static async getAll(): Promise<WarriorData[]> {
+    return (await db.collection("warriors").find().toArray()) as WarriorData[];
+  }
+
   async insert() {
     const isTheNameTaken = await Warrior.findOneByName(this.name);
 
@@ -47,7 +51,7 @@ export class Warrior {
     } as WarriorData);
   }
 
-  pointsVerification() {
+  pointsVerification(): void {
     const totalPointsToDistribute = 10;
     const minPointsToGiven = 1;
     const pointsDistributed =
