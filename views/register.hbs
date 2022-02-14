@@ -1,0 +1,95 @@
+<h2 class="register-header">Stwórz wojownika</h2>
+<p>1.Nazwa powinna zawierać co najmniej 5 znaków.</p>
+<p>2.Każda umiejętność powinna mieć co najmniej 1pk. </p>
+<p>3.Łączna ilość rozdanych punktów musi wynosić 10.</p>
+
+<form
+  class="warrior-add-form"
+  id="warrior-register"
+  action="/register"
+  method="post"
+>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <label for="name">
+            <p>Nazwa wojownika</p>
+          </label>
+        </td>
+        <th>
+          <input id="name" name="name" type="string" required />
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <label for="strength">
+            <p>Siła</p>
+          </label>
+        </td>
+        <th>
+          <input
+            id="strength"
+            name="strength"
+            type="number"
+            min="1"
+            max="7"
+            value="1"
+          />
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <label for="defense">
+            <p>Obronap</p>
+          </label>
+        </td>
+        <th>
+          <input
+            id="defense"
+            name="defense"
+            type="number"
+            min="1"
+            max="7"
+            value="1"
+          />
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <label for="resilience">
+            <p>Wytrzymałość</p>
+          </label>
+        </td>
+        <th>
+          <input
+            id="resilience"
+            name="resilience"
+            type="number"
+            min="1"
+            max="7"
+            value="1"
+          />
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <label for="agility">
+            <p>Zwinność</p>
+          </label>
+        </td>
+        <th>
+          <input
+            id="agility"
+            name="agility"
+            type="number"
+            min="1"
+            max="7"
+            value="1"
+          />
+        </th>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit">Dodaj</button>
+</form>
