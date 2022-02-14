@@ -5,13 +5,20 @@ import { Warrior } from "../records/warrior.record";
 export default () => {
   const warriorRouter = Router();
 
-  warriorRouter.post("/", async (req: Request, res: Response) => {
-    const warriorDto = req.body as WarriorData;
+  warriorRouter
+    .get("/", async (req: Request, res: Response) => {
+      const warriors = await Warrior.getAll();
 
-    const newWarrior = new Warrior(warriorDto);
-    const warr = await newWarrior.insert();
-    res.send(warr);
-  });
+      res.send(warriors);
+    })
+
+    .post("/", async (req: Request, res: Response) => {
+      const warriorRegister = req.body as WarriorData;
+
+      const newWarrior = new Warrior(warriorRegister);
+      const warr = await newWarrior.insert();
+      res.send(warr);
+    });
 
   return warriorRouter;
 };
