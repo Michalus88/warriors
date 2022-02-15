@@ -1,18 +1,20 @@
-<p>Sala hwały</p>
+<div class="header-container">
+  <p>Lista najleprzych wojowników</p>
+</div>
 <ul>
   <table>
     <thead>
       <tr>
-        <td>Miejsce</td>
-        <td>Nazwa wojownika</td>
-        <td>Ilość zwycięstw</td>
+        <th>Miejsce</th>
+        <th>Nazwa wojownika</th>
+        <th>Ilość zwycięstw</th>
       </tr>
     </thead>
     <tbody>
       {{#each warriors}}
         <tr>
           <th>{{inc @index}}</th>
-          <th>{{this.name}}</th>
+          <td>{{this.name}}</td>
           <th>{{this.winnings}}</th>
         </tr>
       {{/each}}
