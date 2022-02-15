@@ -5,6 +5,7 @@ import { engine } from "express-handlebars";
 import hallOfGloryRouter from "./routers/hall-of-glory-router";
 import homeRouter from "./routers/home-router";
 import registerRouter from "./routers/register-routers";
+import { handlebarsHelpers } from "./utils/handlebars-helpers";
 
 const app = express();
 
