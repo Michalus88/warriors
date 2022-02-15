@@ -1,0 +1,21 @@
+<p>Sala hwały</p>
+<ul>
+  <table>
+    <thead>
+      <tr>
+        <td>Miejsce</td>
+        <td>Nazwa wojownika</td>
+        <td>Ilość zwycięstw</td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each warriors}}
+        <tr>
+          <th>{{inc @index}}</th>
+          <th>{{this.name}}</th>
+          <th>{{this.winnings}}</th>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</ul>
