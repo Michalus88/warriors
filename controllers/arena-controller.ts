@@ -8,11 +8,19 @@ export class Arena {
   private warrior1: Warrior | null = null;
   private warrior2: Warrior | null = null;
 
+  pageRender = async (req: Request, res: Response) => {
+    const warriors = await Warrior.getAll();
+
+    res.render("arena/main", { warriors });
+  };
+
   fight = async (req: Request, res: Response) => {
     const { firstFighter, secondFighter } = req.body as FightersNamesReq;
     await this.validate(firstFighter, secondFighter);
     await this.setWarriors(firstFighter, secondFighter);
     console.log(this.warrior1, this.warrior2);
+
+    res.render("arena/fight");
   };
 
   setWarriors = async (firstFighter, secondFighter) => {
@@ -38,3 +46,5 @@ export class Arena {
     }
   };
 }
+
+export default new Arena();
