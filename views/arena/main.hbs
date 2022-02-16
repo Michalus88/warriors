@@ -1,0 +1,20 @@
+<div class="header-container">
+  <p>Wybierz zawodników, pamiętaj, że nie mogą być to Ci sami wojownicy</p>
+</div>
+<form class="select-container" action="/arena" method="post">
+  <label for="first-fighter">Wojownik I:</label>
+  <select name="firstFighter" id="first-fighter">
+    <option value="" selected hidden>Wybierz wojownika</option>
+    {{#each warriors}}
+      <option value={{this.name}}>{{this.name}}</option>
+    {{/each}}
+  </select>
+  <label for="second-fighter">Wojownik II:</label>
+  <select name="secondFighter" id="second-fighter">
+    <option value="" selected hidden>Wybierz wojownika</option>
+    {{#each warriors}}
+      <option value={{this.name}}>{{this.name}}</option>
+    {{/each}}
+  </select>
+  <button type="submit" class="fight-btn">Pojedynek</button>
+</form>
