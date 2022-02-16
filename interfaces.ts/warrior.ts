@@ -9,3 +9,8 @@ export interface WarriorData {
   agility: number;
   winnings?: number;
 }
+
+export interface FightersNamesReq {
+  firstFighter: string | undefined;
+  secondFighter: string | undefined;
+}
