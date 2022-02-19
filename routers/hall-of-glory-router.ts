@@ -1,13 +1,10 @@
-import { Router, Request, Response } from "express";
-import { Warrior } from "../records/warrior.record";
+import { Router } from "express";
+import hallOfGloryController from "../controllers/hall-of-glory-controller";
 
 export default () => {
   const hallOfGloryRouter = Router();
 
-  hallOfGloryRouter.get("/", async (req: Request, res: Response) => {
-    const warriors = await Warrior.getAll();
-    res.render("hall-of-glory", { warriors });
-  });
+  hallOfGloryRouter.get("/", hallOfGloryController.pageRender);
 
   return hallOfGloryRouter;
 };
