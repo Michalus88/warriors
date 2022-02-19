@@ -32,7 +32,7 @@ export class Warrior {
     return warrior ? new Warrior(warrior) : null;
   }
 
-  static async getAll(): Promise<Warrior[] | []> {
+  static async getAll(): Promise<Warrior[]> {
     const warriors = (await db
       .collection("warriors")
       .find()
@@ -80,5 +80,25 @@ export class Warrior {
     if (!doesEachSkillHavePoints) {
       throw new Error("Each skill must get at least one point !");
     }
+  }
+
+  public get hp() {
+    return this.healthyPoints;
+  }
+
+  public set hp(newHp: number) {
+    this.healthyPoints = newHp;
+  }
+
+  get dp() {
+    return this.defense;
+  }
+
+  set dp(newDp: number) {
+    this.defense = newDp;
+  }
+
+  get plate() {
+    return this.canUsePlate;
   }
 }
