@@ -3,6 +3,13 @@ import { FightersNamesReq } from "../interfaces.ts/warrior";
 import { Warrior } from "../records/warrior.record";
 
 type FighterName = string | undefined;
+type AtackerNumber = 1 | 2;
+interface Fighter {
+  record: Warrior;
+  hp: number;
+  dp: number;
+  shield: number | null;
+}
 
 export class Arena {
   private warrior1: Warrior | null = null;
