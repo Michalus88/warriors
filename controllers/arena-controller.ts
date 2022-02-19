@@ -17,19 +17,20 @@ export class Arena {
   private whoIsAttacking: AtackerNumber;
   public logs: string[] = [];
 
-  pageRender = async (req: Request, res: Response) => {
+  public pageRender = async (req: Request, res: Response): Promise<void> => {
     const warriors = await Warrior.getAll();
 
     res.render("arena/main", { warriors });
   };
 
-  fight = async (req: Request, res: Response) => {
-    const { firstFighter, secondFighter } = req.body as FightersNamesReq;
-    await this.validate(firstFighter, secondFighter);
-    await this.setWarriors(firstFighter, secondFighter);
-    console.log(this.warrior1, this.warrior2);
+  public fight = async (req: Request, res: Response): Promise<void> => {
+    const { firstFighterName, secondFighterName } =
+      req.body as FightersNamesReq;
+    this.validate(firstFighterName, secondFighterName);
+    await this.setWarriors(firstFighterName, secondFighterName);
+    this.fightResult();
 
-    res.render("arena/fight");
+    res.render("arena/fight", { logs: this.logs });
   };
 
   private setWarriors = async (
@@ -98,13 +99,13 @@ export class Arena {
     secondFighterName: FighterName
   ): void => {
     if (
-      firstFighter === (undefined || "") ||
-      secondFighter === (undefined || "")
+      firstFighterName === (undefined || "") ||
+      secondFighterName === (undefined || "")
     ) {
       throw new Error("Trzeba wybrać dwóch zawodnikó");
     }
 
-    if (firstFighter === secondFighter) {
+    if (firstFighterName === secondFighterName) {
       throw new Error(
         "W jednej walce nie może być wybrany dwa razy ten sam wojownik"
       );
