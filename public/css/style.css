@@ -188,3 +188,13 @@ input {
 .center {
   text-align: center;
 }
+
+.home-title {
+  margin: auto;
+  padding: 20px;
+}
+
+.description {
+  padding: 0 20px 20px;
+  font-size: 20px;
+}
