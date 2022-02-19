@@ -11,6 +11,6 @@ export interface WarriorData {
 }
 
 export interface FightersNamesReq {
-  firstFighter: string | undefined;
-  secondFighter: string | undefined;
+  firstFighterName: string | undefined;
+  secondFighterName: string | undefined;
 }
