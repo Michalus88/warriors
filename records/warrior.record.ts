@@ -36,7 +36,18 @@ export class Warrior {
     return warriors.map((warriorObj) => new Warrior(warriorObj));
   }
 
-  async insert() {
+  static async getTop(limit) {
+    const warriors = (await db
+      .collection("warriors")
+      .find({ winnings: { $gt: 0 } })
+      .sort({ winnings: -1, name: 1 })
+      .limit(limit)
+      .toArray()) as WarriorData[];
+
+    return warriors.map((warriorObj) => new Warrior(warriorObj));
+  }
+
+  public async insert() {
     const isTheNameTaken = await Warrior.findOneByName(this.name);
 
     if (isTheNameTaken) {
@@ -55,7 +66,14 @@ export class Warrior {
     } as WarriorData);
   }
 
-  pointsVerification(): void {
+  public winningsInc = (): void => {
+    db.collection("warriors").updateOne(
+      { name: String(this.name) },
+      { $inc: { winnings: 1 } }
+    );
+  };
+
+  private pointsVerification(): void {
     const totalPointsToDistribute = 10;
     const minPointsToGiven = 1;
     const pointsDistributed =
