@@ -19,26 +19,32 @@ export class Warrior {
     this.defense = Number(warriorObj.defense);
     this.resilience = Number(warriorObj.resilience);
     this.agility = Number(warriorObj.agility);
-    this.winnings = Number(warriorObj.winnings);
+    this.winnings = warriorObj.winnings ?? 0;
+    this.healthyPoints = this.resilience * 10;
+    this.canUsePlate = this.strength < this.defense + this.agility;
   }
 
-  static async findOneByName(name: string): Promise<WarriorData> {
+  static async findOneByName(name: string): Promise<Warrior | null> {
     const warrior = (await db
       .collection("warriors")
       .findOne({ name })) as WarriorData;
 
-    return warrior;
+    return warrior ? new Warrior(warrior) : null;
   }
 
-  static async getAll(): Promise<WarriorData[]> {
-    return (await db.collection("warriors").find().toArray()) as WarriorData[];
+  static async getAll(): Promise<Warrior[] | []> {
+    const warriors = (await db
+      .collection("warriors")
+      .find()
+      .toArray()) as WarriorData[];
+    return warriors.map((warriorObj) => new Warrior(warriorObj));
   }
 
   async insert() {
     const isTheNameTaken = await Warrior.findOneByName(this.name);
 
     if (isTheNameTaken) {
-      throw new Error("Sorry. A fighter with the given name already exists...");
+      throw new Error("Sorry. A warrior with the given name already exists...");
     }
 
     this.pointsVerification();
