@@ -2,15 +2,13 @@ import { db, ObjectId } from "../config/mongoDb";
 import { WarriorData } from "../interfaces.ts/warrior";
 
 export class Warrior {
-  private id?: ObjectId;
-  private name: string;
-  private strength: number;
-  private defense: number;
-  private resilience: number;
-  private agility: number;
-  private winnings?: number;
-  private healthyPoints: number;
-  private canUsePlate: boolean;
+  readonly id?: ObjectId;
+  readonly name: string;
+  readonly strength: number;
+  readonly defense: number;
+  readonly resilience: number;
+  readonly agility: number;
+  private winnings: number;
 
   constructor(warriorObj: WarriorData) {
     this.id = warriorObj._id;
@@ -20,8 +18,6 @@ export class Warrior {
     this.resilience = Number(warriorObj.resilience);
     this.agility = Number(warriorObj.agility);
     this.winnings = warriorObj.winnings ?? 0;
-    this.healthyPoints = this.resilience * 10;
-    this.canUsePlate = this.strength < this.defense + this.agility;
   }
 
   static async findOneByName(name: string): Promise<Warrior | null> {
@@ -80,25 +76,5 @@ export class Warrior {
     if (!doesEachSkillHavePoints) {
       throw new Error("Each skill must get at least one point !");
     }
-  }
-
-  public get hp() {
-    return this.healthyPoints;
-  }
-
-  public set hp(newHp: number) {
-    this.healthyPoints = newHp;
-  }
-
-  get dp() {
-    return this.defense;
-  }
-
-  set dp(newDp: number) {
-    this.defense = newDp;
-  }
-
-  get plate() {
-    return this.canUsePlate;
   }
 }
