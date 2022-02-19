@@ -12,8 +12,10 @@ interface Fighter {
 }
 
 export class Arena {
-  private warrior1: Warrior | null = null;
-  private warrior2: Warrior | null = null;
+  private warrior1: Fighter;
+  private warrior2: Fighter;
+  private whoIsAttacking: AtackerNumber;
+  public logs: string[] = [];
 
   pageRender = async (req: Request, res: Response) => {
     const warriors = await Warrior.getAll();
