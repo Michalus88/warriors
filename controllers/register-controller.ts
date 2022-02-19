@@ -11,6 +11,7 @@ export default {
     const warriorRegister = req.body as WarriorData;
     const newWarrior = new Warrior(warriorRegister);
     await newWarrior.insert();
+
     res.render("home");
   },
 };
