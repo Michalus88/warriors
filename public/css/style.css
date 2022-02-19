@@ -51,7 +51,8 @@ nav a:hover {
   font-size: 18;
 }
 
-.header-container {
+.header-container,
+.fight-container {
   margin: 20px auto;
   display: flex;
   width: 30vw;
@@ -63,6 +64,16 @@ nav a:hover {
   text-align: center;
   color: black;
 }
+
+.fight-container {
+  width: 30vw;
+  text-align: left;
+}
+
+.fight-container ol {
+  padding-left: 20px;
+}
+
 .header-register p {
   text-align: left;
 }
