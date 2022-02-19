@@ -2,13 +2,15 @@ import { db, ObjectId } from "../config/mongoDb";
 import { WarriorData } from "../interfaces.ts/warrior";
 
 export class Warrior {
-  id?: ObjectId;
-  name: string;
-  strength: number;
-  defense: number;
-  resilience: number;
-  agility: number;
-  winnings?: number;
+  private id?: ObjectId;
+  private name: string;
+  private strength: number;
+  private defense: number;
+  private resilience: number;
+  private agility: number;
+  private winnings?: number;
+  private healthyPoints: number;
+  private canUsePlate: boolean;
 
   constructor(warriorObj: WarriorData) {
     this.id = warriorObj._id;

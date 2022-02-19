@@ -7,7 +7,7 @@ export interface WarriorData {
   defense: number;
   resilience: number;
   agility: number;
-  winnings?: number;
+  winnings: number;
 }
 
 export interface FightersNamesReq {
