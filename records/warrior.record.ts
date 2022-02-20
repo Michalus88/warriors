@@ -76,6 +76,17 @@ export class Warrior {
     );
   };
 
+  private nameVerification = async (): Promise<Warrior | null> => {
+    if (this.name.length < 5) {
+      throw new ValidateError("Nazwa musi posiadać co najmniej 5 znaków !");
+    }
+    if (this.name.length < 30) {
+      throw new ValidateError("Nazwa nie może posiadać więcej niż 30 znaków !");
+    }
+
+    return await Warrior.findOneByName(this.name);
+  };
+
   private pointsVerification(): void {
     const totalPointsToDistribute = 10;
     const minPointsToGiven = 1;
