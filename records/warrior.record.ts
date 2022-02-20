@@ -1,5 +1,6 @@
 import { db, ObjectId } from "../config/mongoDb";
 import { WarriorData } from "../interfaces.ts/warrior";
+import { ValidateError } from "../middlewares/errors";
 
 export class Warrior {
   readonly id?: ObjectId;
@@ -48,10 +49,12 @@ export class Warrior {
   }
 
   public async insert() {
-    const isTheNameTaken = await Warrior.findOneByName(this.name);
+    const isTheNameTaken = this.nameVerification();
 
     if (isTheNameTaken) {
-      throw new Error("Sorry. A warrior with the given name already exists...");
+      throw new ValidateError(
+        "Wojownik o podanej nazwie już istnieje. Musisz wybrać inną."
+      );
     }
 
     this.pointsVerification();
@@ -80,9 +83,9 @@ export class Warrior {
       this.strength + this.agility + this.defense + this.resilience;
 
     if (totalPointsToDistribute > pointsDistributed) {
-      throw new Error("All points must be distributed !");
+      throw new ValidateError("Wszystkie 10 punktów musi być rozdane !");
     } else if (totalPointsToDistribute < pointsDistributed) {
-      throw new Error("You cannot distribute more than ten points !");
+      throw new ValidateError("Maxymalna liczba punktów do rozdania to 10 !");
     }
 
     const doesEachSkillHavePoints =
@@ -92,7 +95,9 @@ export class Warrior {
       this.resilience >= minPointsToGiven;
 
     if (!doesEachSkillHavePoints) {
-      throw new Error("Each skill must get at least one point !");
+      throw new ValidateError(
+        "Każda umiejętność musi posiadać co najmniej 1 punkt !"
+      );
     }
   }
 }

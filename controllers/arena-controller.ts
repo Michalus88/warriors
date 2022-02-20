@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { FightersNamesReq } from "../interfaces.ts/warrior";
+import { NoFoundError, ValidateError } from "../middlewares/errors";
 import { Warrior } from "../records/warrior.record";
 
 type FighterName = string | undefined;
@@ -41,7 +42,7 @@ export class Arena {
     const warrior1 = await Warrior.findOneByName(firstFighterName);
     const warrior2 = await Warrior.findOneByName(secondFighterName);
     if (this.warrior1 === null || this.warrior2 === null) {
-      throw new Error("Nie posiadamy zawodnika o podanej nazwie");
+      throw new NoFoundError("Nie posiadamy zawodnika o podanej nazwie");
     }
     this.warrior1 = this.setWarrior(warrior1);
     this.warrior2 = this.setWarrior(warrior2);
@@ -102,11 +103,11 @@ export class Arena {
       firstFighterName === (undefined || "") ||
       secondFighterName === (undefined || "")
     ) {
-      throw new Error("Trzeba wybrać dwóch zawodnikó");
+      throw new ValidateError("Trzeba wybrać dwóch zawodnikó");
     }
 
     if (firstFighterName === secondFighterName) {
-      throw new Error(
+      throw new ValidateError(
         "W jednej walce nie może być wybrany dwa razy ten sam wojownik"
       );
     }
