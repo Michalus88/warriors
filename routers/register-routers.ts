@@ -1,6 +1,4 @@
 import { Router } from "express";
-
-import { catchAsync } from "../middlewares/errors";
 import registerController from "../controllers/register-controller";
 
 export default () => {
@@ -8,7 +6,7 @@ export default () => {
 
   registerRouter
     .get("/", registerController.pageRender)
-    .post("/", catchAsync(registerController.registerWarrior));
+    .post("/", registerController.registerWarrior);
 
   return registerRouter;
 };

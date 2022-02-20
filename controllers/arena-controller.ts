@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { FightersNamesReq } from "../interfaces.ts/warrior";
-import { NoFoundError, ValidateError } from "../middlewares/errors";
 import { Warrior } from "../records/warrior.record";
+import { NoFoundError, ValidateError } from "../middlewares/errors";
 
 type FighterName = string | undefined;
 type AtackerNumber = 1 | 2;
