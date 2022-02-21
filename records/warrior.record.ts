@@ -37,7 +37,7 @@ export class Warrior {
     return warriors.map((warriorObj) => new Warrior(warriorObj));
   }
 
-  static async getTop(limit) {
+  static async getTop(limit: number) {
     const warriors = (await db
       .collection("warriors")
       .find({ winnings: { $gt: 0 } })
