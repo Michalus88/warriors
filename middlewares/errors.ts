@@ -1,10 +1,4 @@
-import {
-  Request,
-  Response,
-  ErrorRequestHandler,
-  NextFunction,
-  RequestHandler,
-} from "express";
+import { Request, Response, ErrorRequestHandler, NextFunction } from "express";
 
 export class ValidateError extends Error {}
 export class NoFoundError extends Error {}
@@ -28,12 +22,4 @@ export function errorHandler(
 
   res.status(code);
   res.render("error", { message });
-}
-
-type Cb = (req: Request, res: Response, next: NextFunction) => Promise<void>;
-
-export function catchAsync(fn: Cb): RequestHandler {
-  return (req, res, next) => {
-    fn(req, res, next).catch((err: Error) => next(err));
-  };
 }

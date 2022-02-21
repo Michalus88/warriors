@@ -1,7 +1,7 @@
 import "dotenv/config";
-import * as express from "express";
-import "express-async-errors";
+import express from "express";
 import { engine } from "express-handlebars";
+import "express-async-errors";
 
 import hallOfGloryRouter from "./routers/hall-of-glory-router";
 import homeRouter from "./routers/home-router";
