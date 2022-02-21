@@ -52,7 +52,8 @@ nav a:hover {
 }
 
 .header-container,
-.fight-container {
+.fight-container,
+.error-container {
   margin: 20px auto;
   display: flex;
   width: 30vw;
@@ -163,28 +164,6 @@ input {
   text-align: center;
 }
 
-.back-home {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline;
-  border-radius: 20px;
-  margin: 10px auto;
-  padding: 10px 20px;
-  background-color: grey;
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.error {
-  width: 80%;
-  margin: 10px auto;
-  padding: 50px;
-  border: 1px solid #f80303;
-  background-color: #ff9191;
-}
 .center {
   text-align: center;
 }
@@ -196,5 +175,17 @@ input {
 
 .description {
   padding: 0 20px 20px;
+  font-size: 20px;
+}
+
+.error-container {
+  padding: 30px;
+  border: 1px solid #f80303;
+  background-color: #f5e1e1;
+  color: red;
+}
+
+.error-message {
+  padding-top: 20px;
   font-size: 20px;
 }
