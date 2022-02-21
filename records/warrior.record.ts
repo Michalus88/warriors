@@ -49,7 +49,7 @@ export class Warrior {
   }
 
   public async insert() {
-    const isTheNameTaken = this.nameVerification();
+    const isTheNameTaken = await this.nameVerification();
 
     if (isTheNameTaken) {
       throw new ValidateError(
