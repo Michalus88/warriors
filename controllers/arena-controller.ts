@@ -13,9 +13,9 @@ interface Fighter {
 }
 
 export class Arena {
-  private warrior1: Fighter;
-  private warrior2: Fighter;
-  private whoIsAttacking: AtackerNumber;
+  private warrior1!: Fighter;
+  private warrior2!: Fighter;
+  private whoIsAttacking!: AtackerNumber;
   public logs: string[] = [];
 
   public pageRender = async (req: Request, res: Response): Promise<void> => {
@@ -28,15 +28,18 @@ export class Arena {
     const { firstFighterName, secondFighterName } =
       req.body as FightersNamesReq;
     this.validate(firstFighterName, secondFighterName);
-    await this.setWarriors(firstFighterName, secondFighterName);
+    await this.setWarriors(
+      firstFighterName as string,
+      secondFighterName as string
+    );
     this.fightResult();
 
     res.render("arena/fight", { logs: this.logs });
   };
 
   private setWarriors = async (
-    firstFighterName,
-    secondFighterName
+    firstFighterName: string,
+    secondFighterName: string
   ): Promise<void> => {
     this.whoIsAttacking = this.attackerDraw();
     const warrior1 = await Warrior.findOneByName(firstFighterName);
@@ -44,8 +47,8 @@ export class Arena {
     if (this.warrior1 === null || this.warrior2 === null) {
       throw new NoFoundError("Nie posiadamy zawodnika o podanej nazwie");
     }
-    this.warrior1 = this.setWarrior(warrior1);
-    this.warrior2 = this.setWarrior(warrior2);
+    this.warrior1 = this.setWarrior(warrior1 as Warrior);
+    this.warrior2 = this.setWarrior(warrior2 as Warrior);
   };
 
   private attackerDraw = (): AtackerNumber =>
@@ -63,12 +66,12 @@ export class Arena {
 
   private fightResult = (): void => {
     this.logs = [];
-    let winner: Fighter;
+    let winner!: Fighter;
     let attacker = this.whoIsAttacking === 1 ? this.warrior1 : this.warrior2;
     let defender = this.whoIsAttacking === 1 ? this.warrior2 : this.warrior1;
 
     do {
-      if (attacker.shield && defender.shield > 0) {
+      if (attacker.shield && defender.shield && defender.shield > 0) {
         defender.dp -= attacker.record.strength;
         if (defender.dp < 0) {
           defender.hp -= -defender.dp;
