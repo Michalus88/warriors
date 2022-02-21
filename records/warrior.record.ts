@@ -80,7 +80,7 @@ export class Warrior {
     if (this.name.length < 5) {
       throw new ValidateError("Nazwa musi posiadać co najmniej 5 znaków !");
     }
-    if (this.name.length < 30) {
+    if (this.name.length > 30) {
       throw new ValidateError("Nazwa nie może posiadać więcej niż 30 znaków !");
     }
 
